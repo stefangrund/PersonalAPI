@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# Change the RewriteBase to match your setup, e.g. / if you run the API under a subdomain or /PersonalAPI/ if you run it in localhost/PersonalAPI/
+
+RewriteBase /
+
+RewriteRule ^v1/([^\.]+).(xml|json|atom)$ api.php?url=$1&format=$2 [QSA,L]
+RewriteRule ^v1/([^\.]+)$ api.php?url=$1 [QSA,L]

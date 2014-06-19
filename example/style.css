@@ -1,0 +1,70 @@
+/* Example Stylesheet */
+
+/* Design base */
+body {
+	background-color: #fff;
+}
+
+#content {
+	text-align: center;
+	margin: 0px auto;
+	font-family: Helvetica, arial, sans-serif;
+	font-size: 16px;
+	line-height: 21px;
+}
+
+h1 {
+	font-weight: 700;
+	font-size: 24px;
+	margin: 0 0 40px 0;
+}
+h2 {
+	font-weight: 700;
+	font-size: 19px;
+	margin-top: 0;
+}
+
+footer {
+	font-size: 14px;
+}
+
+a {
+	color: #4183c4;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+/* Resources */
+
+#statuses, #steps, #places {
+	margin-bottom: 40px;
+}
+#places img {
+	border-radius: 5px;
+}
+
+/* Media queries for responsiveness */
+@media screen and (min-width: 801px) {
+	body { 
+		padding: 50px;
+	}
+
+	#content { 
+		width: 580px;
+		padding: 40px;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	body { 
+		padding: 0.6%;
+	}
+
+	#content { 
+		width: 88%;
+		padding: 5.4%;
+	}
+}
+
