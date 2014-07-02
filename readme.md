@@ -2,7 +2,7 @@
 
 Personal API collects your social media and quantified self data from external services to archive, use and *really* own it. It's a full featured RESTful API, which supports all CRUD operations with simple HTTP requests.
 
-I wrote my bachelor thesis at the University of Cologne about the concept of such an API, which originates from [Naveen Selvadurai's personal API](http://x.naveen.com/post/51808692792/a-personal-api). I think a personal API is a great way to collect and interact with every aspect of your digital self, e.g. your tweets, check-ins, bookmarks, tracked steps, weight, or sleep duration. Everything will be saved in your own database so that you don't have to rely on different platforms, companys and device manufacturers anymore. **[You can read my thesis or download the PDF or eBook here](http://stefangrund.de/personalapi/)** (but obviously it's in German ;)).
+I wrote my bachelor thesis at the University of Cologne about the concept of such an API, which originates from [Naveen Selvadurai's personal API](http://x.naveen.com/post/51808692792/a-personal-api). I think a personal API is a great way to collect and interact with every aspect of your digital self, e.g. your tweets, check-ins, bookmarks, tracked steps, weight, or sleep duration. Everything will be saved in your own database so that you don't have to rely on different platforms, companys and device manufacturers anymore. **[You can read my thesis or download the PDF or eBook here](http://stefangrund.de/personalapi/)** (but it's in German).
 
 <a href="http://api.stefangrund.de/"><img src="http://stefangrund.de/personalapi/img/github_frontpage.gif" alt=""></a>
 
@@ -105,7 +105,7 @@ A complete GET request for `/v1/statuses` with all parameters will look like thi
 
 `http://api.yourname.com/v1/statuses?date=2014-07-18&count=5&format=xml&token=TOKEN`
 
-To request single items from a resource just add `/id to a call:
+To request single items from a resource just add `/id` to a call:
 
 `http://api.yourname.com/v1/steps/35?token=TOKEN`
 
