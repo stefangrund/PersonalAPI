@@ -104,11 +104,14 @@ code {
 /* Forms */
 
 label {
-	display: block;
+	display: inline-block;
 	width: 100px;
 	height: 22px;
 	padding: 2px;
 	float: left;
+}
+form input {
+	display: block;
 }
 input[type=text], input[type=password] {
 	background-color: #fff;
