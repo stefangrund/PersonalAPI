@@ -45,8 +45,8 @@ require_once 'install_functions.php';
 	?>
 	</div>
 
-	<p>Your Personal API is installed now but the modules aren't configured yet. This is required to fetch and add data from external services to your database. You'll need to enter your API keys, usernames etc. into the modules' settings in order to work. There are instructions for getting the these keys when you select a module.</p>
+	<p>Your Personal API is installed now but the modules aren't configured yet. This is required to fetch and add data from external services to your database. You'll need to enter your API keys, usernames, etc., into the modules' settings in order for them to work. There are instructions for getting these keys when you select a module.</p>
 
-	<p><a href="admin/modules.php"><strong>Okay, let me configurate the modules.</strong></a></p>
+	<p><a href="admin/modules.php"><strong>Okay, let me configure the modules.</strong></a></p>
 	
 <?php endif; ?>
