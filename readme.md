@@ -1,4 +1,4 @@
-#Personal API
+# Personal API
 
 Personal API collects your social media and quantified self data from external services to archive, use and *really* own it. It's a full featured RESTful API, which supports all CRUD operations with simple HTTP requests.
 
@@ -29,11 +29,11 @@ If you want to play around with a Personal API see mine at [api.stefangrund.de](
 
 The first Personal API prototype is working, but has a lot of issues, e.g. the module system is very *hacky* and there's only support for a few services (see [list of modules](https://github.com/stefangrund/PersonalAPI/wiki/Modules)). I highly recommend not to use it in production environments right now, unless you know what you're doing.
 
-###System Requirements
+### System Requirements
 
 The Personal API runs under PHP and MySQL. I tested it with PHP 5.5.3 and MySQL 5.5.33. The steps module requires the PECL-extension [oauth](http://pecl.php.net/package/oauth). Also it's recommended to run a cron job several times a day to fetch data from external services (see [Updating your database](#updating-your-database)). 
 
-###Installation
+### Installation
 
 1. Again: Be sure you know what you're doing. Personal API isn't finished yet and it's not recommended to use it in production environments right now!
 2. Download a [(pre-)release](https://github.com/stefangrund/PersonalAPI/releases).
@@ -43,25 +43,28 @@ The Personal API runs under PHP and MySQL. I tested it with PHP 5.5.3 and MySQL 
 
 That's it, you're done! :)
 
-###Configuring Modules
+### Configuring Modules
 
 After you've successfully installed your Personal API, you'll need to configure the modules in order to get data from external services into the API's database. You'll find instructions for every service in the module selection.
 
-###Updating your Database
+### Updating your Database
 
 After you've entered the required API keys, usernames, etc. into the modules' settings, you'll need to update your database. This will load your data from the external services and add it to your API's database. You can update your database manually by visiting this page or automatically by creating a cron job for this URL:
 
 `http://api.yourname.com/update.php?token=MASTERTOKEN`
 
-Run this cron job daily or several times a day for best results.
+Run this cron job daily or several times a day for best results, e.g. with this cronjob involving `curl`:
+```Shell
+0 0,8,12,16,20 * * * /usr/bin/curl --silent http://api.yourname.com/update.php?token=MASTERTOKEN
+```
 
-##Documentation
+## Documentation
 
 Here you'll find a full documentation for your APIs functions.
 
-###Authentication
+### Authentication
 
-Access tokens are required for any interaction with your API. While the API supports all CRUD operations, only reading data is allowed for the public. You can create new tokens and give them different permissions but two tokens are already generated after you've installed your API:
+Access tokens are required for any interaction with your API. While the API supports all CRUD operations, only reading data is allowed for the public. You can create new tokens and give them different permissions, but two tokens are already generated after you've installed your API:
 
 * A **public token** which is displayed on the public front page and enables anyone to read data from your database.
 * And a **master token** which enables you (and only you - keep it secret!) to perform any action on your database like creating, reading, updating and deleting data.
@@ -72,7 +75,7 @@ Just append the `token` parameter to your requested URL like this (otherwise you
 
 You can see the number of API requests of each token on the token page under "Usage".
 
-###Resources / URL Design
+### Resources / URL Design
 
 The API is modeled around the different resources. A resource is a data type controlled by a module. Every resource has two types of URLs:
 
@@ -82,15 +85,15 @@ The API is modeled around the different resources. A resource is a data type con
 
 The first URL represents the whole collection, the second one is specific for one element in this collection. Therefore `/places/1234` represents the 1234th element in the resource/collection _Places_.
 
-####Parameters
+#### Parameters
 
 Use the parameter `date=YYYY-MM-DD` to limit the timespan of your request. Use `format` to determine the format of the response (you can choose between the default `json` or `xml`) and `count` to determine the number of items in the response (default is 25, maximum is 200).
 
-####Available Resources
+#### Available Resources
 
 Right now [these resources](https://github.com/stefangrund/PersonalAPI/wiki/Modules) can be used within the Personal API.
 
-###Requests
+### Requests
 
 To operate on the resources you can use the HTTP verbs POST, GET, PUT and DELETE which match the four CRUD operations (Create, Read, Update, Delete). Not every request method is allowed with every resource, e.g. you can't delete a whole collection for security reasons. Use the request methods like this:
 
@@ -99,7 +102,7 @@ Resource | POST | GET | PUT | DELETE
 /statuses | Creates new element | Shows all elements | - | -
 /statuses/123 | - | Shows element 123 | Updates element 123 | Deletes element 123
 
-####Example API call
+#### Example API call
 
 A complete GET request for `/v1/statuses` with all parameters will look like this:
 
@@ -109,7 +112,7 @@ To request single items from a resource just add `/id` to a call:
 
 `http://api.yourname.com/v1/steps/35?token=TOKEN`
 
-###Error Handling
+### Error Handling
 
 If there is an error or unauthorized behaviour the API will answer with a following status codes and a error message. These status codes are supported:
 
