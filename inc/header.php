@@ -13,6 +13,12 @@
 </head>
 <body>
 
+	<div id="header">
+		<a href="<?php echo BASEURL; ?>">
+			<img src="<?php echo BASEURL; ?>img/logo/blue.svg" onerror="this.onerror=null; this.src='<?php echo BASEURL; ?>img/logo/blue.png'"> 
+		</a>
+	</div>
+
 	<div id="content">
 
 		<?php if($title == NULL) {

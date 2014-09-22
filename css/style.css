@@ -8,6 +8,19 @@ body {
 	background-color: #eae9eb;
 }
 
+#header {
+	text-align: center;
+	margin: 0px auto;
+}
+
+#header img {
+	width: 300px;
+}
+
+#header img:hover {
+	opacity: 0.8;
+}
+
 #content {
 	background-color: #fff;
 	text-align: left;
@@ -168,9 +181,10 @@ input[type=submit]:hover {
 @media screen and (min-width: 801px) {
 	body { 
 		padding: 50px;
+		padding-top: 0px;
 	}
 
-	#content { 
+	#header, #content { 
 		width: 580px;
 		padding: 40px;
 	}
@@ -181,7 +195,7 @@ input[type=submit]:hover {
 		padding: 0.6%;
 	}
 
-	#content { 
+	#header, #content { 
 		width: 88%;
 		padding: 5.4%;
 	}
