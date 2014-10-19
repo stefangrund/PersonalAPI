@@ -1,6 +1,6 @@
 <?php
 /**
- * FitbitPHP v.0.72. Basic Fitbit API wrapper for PHP using OAuth
+ * FitbitPHP v.0.73. Basic Fitbit API wrapper for PHP using OAuth
  *
  * Note: Library is in beta and provided as-is. We hope to add features as API grows, however
  *       feel free to fork, extend and send pull requests to us.
@@ -8,9 +8,9 @@
  * - https://github.com/heyitspavel/fitbitphp
  *
  *
- * Date: 2013/03/20
+ * Date: 2014/09/23
  * Requires OAuth 1.0.0, SimpleXML
- * @version 0.72 ($Id$)
+ * @version 0.73 ($Id$)
  */
 
 
@@ -95,7 +95,7 @@ class FitBitPHP
      * @param string $apiHost API host, i.e. api.fitbit.com (do you know any others?)
      * @param string $authHost Auth host, i.e. www.fitbit.com
      */
-    public function setEndpointBase($apiHost, $authHost, $https = true, $httpsApi = false)
+    public function setEndpointBase($apiHost, $authHost, $https = true, $httpsApi = true)
     {
         $this->apiHost = $apiHost;
         $this->authHost = $authHost;
@@ -103,7 +103,7 @@ class FitBitPHP
         $this->initUrls($https, $httpsApi);
     }
 
-    private function initUrls($https = true, $httpsApi = false)
+    private function initUrls($https = true, $httpsApi = true)
     {
 
         if ($httpsApi)
@@ -1759,10 +1759,9 @@ class FitBitPHP
      *
      *            'caloriesOut', 'steps', 'distance', 'floors', 'elevation'
      *            'minutesSedentary', 'minutesLightlyActive', 'minutesFairlyActive', 'minutesVeryActive',
-     *            'activeScore', 'activityCalories',
+     *            'activityCalories',
      *
      *            'tracker_caloriesOut', 'tracker_steps', 'tracker_distance', 'tracker_floors', 'tracker_elevation'
-     *            'tracker_activeScore'
      *
      *            'startTime', 'timeInBed', 'minutesAsleep', 'minutesAwake', 'awakeningsCount',
      *            'minutesToFallAsleep', 'minutesAfterWakeup',
@@ -1814,9 +1813,6 @@ class FitBitPHP
             case 'minutesVeryActive':
                 $path = '/activities/log/minutesVeryActive';
                 break;
-            case 'activeScore':
-                $path = '/activities/log/activeScore';
-                break;
             case 'activityCalories':
                 $path = '/activities/log/activityCalories';
                 break;
@@ -1835,9 +1831,6 @@ class FitBitPHP
                 break;
             case 'tracker_elevation':
                 $path = '/activities/log/tracker/elevation';
-                break;
-            case 'tracker_activeScore':
-                $path = '/activities/log/tracker/activeScore';
                 break;
 
             case 'startTime':
@@ -2472,5 +2465,6 @@ class FitBitRateLimiting
     }
 
 }
+
 
 
