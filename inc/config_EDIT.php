@@ -1,8 +1,10 @@
 <?php
 
+/* RENAME THIS FILE TO config.php WHEN YOU'RE READY TO INSTALL! */
+
 // The URL under which your Personal API will be available
 // including http:// and / at the end, e.g. http://api.stefangrund.de/ or http://localhost:8888/PersonalAPI/
-define('BASEURL', 'http://personalapi.dev/');
+define('BASEURL', 'INSERT_HERE');
 
 // The root folder of your Personal API
 define('ROOT', $_SERVER['DOCUMENT_ROOT'] . '/');
@@ -16,12 +18,11 @@ define('ROOT', $_SERVER['DOCUMENT_ROOT'] . '/');
 */
 
 // Configuration of your MySQL database
-define('DB_HOST', '127.0.0.1'); // Hostname
-define('DB_NAME', 'personalapi'); // Database Name
-define('DB_USER', 'local'); // Username
-define('DB_PASS', 'user'); // Password
-define('DB_PORT', '3306'); // Port, default: 3306
-
+define('DB_HOST', 'INSERT_HERE'); // Hostname
+define('DB_NAME', 'INSERT_HERE'); // Database Name
+define('DB_USER', 'INSERT_HERE'); // Username
+define('DB_PASS', 'INSERT_HERE'); // Password
+define('DB_PORT', 'INSERT_HERE'); // Port, default: 3306
 
 // Required files; DO NOT CHANGE!
 function __autoload($className) {

@@ -37,7 +37,7 @@ The Personal API runs under PHP and MySQL. I tested it with PHP 5.5.3 and MySQL 
 
 1. Again: Be sure you know what you're doing. Personal API isn't finished yet and it's not recommended to use it in production environments right now!
 2. Download a [(pre-)release](https://github.com/stefangrund/PersonalAPI/releases).
-3.  Edit `inc/config.php` and add your database information.
+3.  Open `inc/config-EDIT.php` and add your database information. Then *rename it* to `config.php`.
 4. Upload the Personal API files to the desired location on your web server. It's recommended to install your Personal API under a subdomain like _api.yourname.com_. If you do so, you're almost done. Otherwise you'll have to edit the Personal API paths in `config.php` and `.htaccess`.
 5. Run the installation script by accessing the Personal API's URL in a web browser and follow the instructions.
 
