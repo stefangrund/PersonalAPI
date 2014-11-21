@@ -47,7 +47,9 @@ $tblStandard = array(
 	array('papi_modules',"
 		id INT AUTO_INCREMENT primary key NOT NULL,
 		name VARCHAR(32) NOT NULL,
-		data TEXT
+		data TEXT,
+		active BOOL NOT NULL DEFAULT '0',
+		private BOOL NOT NULL DEFAULT '0'
 	")
 
 );
