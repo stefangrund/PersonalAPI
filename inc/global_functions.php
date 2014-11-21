@@ -172,6 +172,22 @@ function doPostRequest($url, $parameters) {
 
 }
 
+// Perform a PUT request
+function doPutRequest($url, $parameters) {
+
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($parameters));
+
+	$response = curl_exec($ch);
+	curl_close($ch);
+
+	return json_decode($response, true); // returns JSON object as array
+
+}
+
 // Search in multidimensional array
 function in_array_r($needle, $haystack, $strict = false) {
     foreach ($haystack as $item) {

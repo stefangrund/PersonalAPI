@@ -55,21 +55,21 @@ function steps_getData() {
 	$fitbit->setResponseFormat('json');
 	$fitbit->setUser($opt[2]);
 
-	// Get steps from yesterday
+	// Get steps starting from yesterday
 	$yesterday = date("Y-m-d", strtotime('yesterday'));
 
-	$response = $fitbit->getTimeSeries(steps,$yesterday,'1d');
-	$response = $response[0];
+	$response = $fitbit->getTimeSeries(steps,$yesterday,'30d'); // timespan to get
+	
+	foreach($response as $item) {
+		$date = date('Y-m-d H:i:s', strtotime($item->dateTime));
+		$steps = $item->value;
 
-	$date = date('Y-m-d H:i:s', strtotime($response->dateTime));
-
-	$steps = $response->value;
-
-	$fields = array(
-		'date' => $date,
-		'steps' => $steps,
-		'org_service' => 'Fitbit'
-	);
+		$fields[] = array(
+			'date' => $date,
+			'steps' => $steps,
+			'org_service' => 'Fitbit'
+		);
+	}
 
 	return $fields;
 
@@ -78,20 +78,46 @@ function steps_getData() {
 // Save data to database
 function steps_saveData() {
 
-	// Construct URL
-	$url = BASEURL . "v1/steps?token=" . getToken(1);
+	// Get new data
+	$fitbit_data = steps_getData(); // new steps
+	$fitbit_data_size = count($fitbit_data);
+
+	// Construct URL for GET request
+	$get_url = BASEURL . 'v1/steps?count=' . $fitbit_data_size . '&token=' . getToken(1);
 
 	// Get existing data
-	$response = doGetRequest($url);
-	$lastDate = date('Y-m-d', strtotime($response[0]['date'])); // last item's date
+	$papi_data = array_reverse(doGetRequest($get_url));
 
-	$yesterday = date("Y-m-d", strtotime('yesterday'));
+	for ($i=0; $i < $fitbit_data_size; $i++) { 
 
-	// If the last item is not from yesterday, then POST new data
-	if($lastDate != $yesterday) {
+		// Construct URL for POST request
+		$post_url = BASEURL . 'v1/steps?token=' . getToken(1);
 
-		$fields = steps_getData();
-		doPostRequest($url, $fields);
+		// Get current item's id
+		$item_id = $papi_data[$i]['id'];
+
+		// Construct URL for PUT request
+		$put_url = BASEURL . 'v1/steps/' . $item_id .'?token=' . getToken(1);
+
+		// New item's parameters
+		$fields = $fitbit_data[$i];
+
+
+		// If day isn't in the database yet, add it
+		if (!in_array_r($fitbit_data[$i]['date'], $papi_data)) {
+			doPostRequest($post_url, $fields);
+		}
+		else {
+			// Prevent updating when out of sync AND useless updating
+			if($fitbit_data[$i]['date'] == $papi_data[$i]['date'] AND $fitbit_data[$i]['steps'] != $papi_data[$i]['steps']) {
+				doPutRequest($put_url, $fields);
+			}
+			/*
+				The updating process needs two steps:
+				1. update: add all missing days to db
+				2. update: correct all days with outdated steps
+			*/
+		}
 
 	}
 
